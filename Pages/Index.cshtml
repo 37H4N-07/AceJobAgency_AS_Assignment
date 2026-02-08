@@ -1,0 +1,375 @@
+﻿@page
+@model AceJobAgency_AS_Assignment.Pages.IndexModel
+@{
+    ViewData["Title"] = "Home";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        /* Hero Section */
+        .hero-section {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 100px 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            opacity: 0.1;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-title {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .hero-subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 40px;
+            opacity: 0.9;
+            animation: fadeInUp 1s ease-out 0.2s both;
+        }
+
+        .hero-buttons {
+            animation: fadeInUp 1s ease-out 0.4s both;
+        }
+
+        .btn-hero {
+            padding: 15px 40px;
+            font-size: 1.1rem;
+            margin: 0 10px;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-primary-hero {
+            background: white;
+            color: #667eea;
+            border: 2px solid white;
+        }
+
+        .btn-primary-hero:hover {
+            background: transparent;
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+
+        .btn-secondary-hero {
+            background: transparent;
+            color: white;
+            border: 2px solid white;
+        }
+
+        .btn-secondary-hero:hover {
+            background: white;
+            color: #667eea;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+
+        /* Features Section */
+        .features-section {
+            padding: 80px 0;
+            background: #f8f9fa;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+            height: 100%;
+            border: 2px solid transparent;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+            border-color: #667eea;
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .feature-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: #333;
+        }
+
+        .feature-description {
+            color: #666;
+            line-height: 1.6;
+        }
+
+        /* Stats Section */
+        .stats-section {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 60px 0;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 20px;
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .stat-label {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        /* Animations */
+        @@keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease-out;
+        }
+
+        .animate-on-scroll.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    @if (!User.Identity!.IsAuthenticated)
+    {
+        <!-- Hero Section -->
+        <section class="hero-section">
+            <div class="container hero-content">
+                <h1 class="hero-title">Welcome to Ace Job Agency</h1>
+                <p class="hero-subtitle">Your Gateway to Career Success</p>
+                <div class="hero-buttons">
+                    <a href="/Register" class="btn-hero btn-primary-hero">Get Started</a>
+                    <a href="/Login" class="btn-hero btn-secondary-hero">Sign In</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Features Section -->
+        <section class="features-section">
+            <div class="container">
+                <div class="text-center mb-5">
+                    <h2 class="display-4 fw-bold mb-3">Why Choose Us?</h2>
+                    <p class="lead text-muted">Discover the benefits of joining Ace Job Agency</p>
+                </div>
+                <div class="row g-4">
+                    <div class="col-md-4 animate-on-scroll">
+                        <div class="feature-card">
+                            <div class="feature-icon">🔒</div>
+                            <h3 class="feature-title">Secure & Protected</h3>
+                            <p class="feature-description">Your data is encrypted and protected with industry-leading security measures including 2FA authentication.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4 animate-on-scroll" style="animation-delay: 0.2s;">
+                        <div class="feature-card">
+                            <div class="feature-icon">💼</div>
+                            <h3 class="feature-title">Exclusive Opportunities</h3>
+                            <p class="feature-description">Access thousands of job listings from top companies across various industries.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4 animate-on-scroll" style="animation-delay: 0.4s;">
+                        <div class="feature-card">
+                            <div class="feature-icon">⚡</div>
+                            <h3 class="feature-title">Fast & Easy</h3>
+                            <p class="feature-description">Quick registration process with email verification to get you started in minutes.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Stats Section -->
+        <section class="stats-section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-4 stat-item">
+                        <div class="stat-number">10,000+</div>
+                        <div class="stat-label">Active Job Seekers</div>
+                    </div>
+                    <div class="col-md-4 stat-item">
+                        <div class="stat-number">5,000+</div>
+                        <div class="stat-label">Companies Hiring</div>
+                    </div>
+                    <div class="col-md-4 stat-item">
+                        <div class="stat-number">95%</div>
+                        <div class="stat-label">Success Rate</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    }
+    else
+    {
+        <!-- Authenticated User Homepage -->
+        <div class="container mt-5">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card shadow">
+                        <div class="card-header bg-gradient text-white" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+                            <h3>Welcome, @Model.CurrentUser?.FirstName @Model.CurrentUser?.LastName!</h3>
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">Your Profile Information</h5>
+                            <hr />
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <table class="table table-borderless">
+                                        <tbody>
+                                            <tr>
+                                                <th scope="row" width="40%">Full Name:</th>
+                                                <td>@Model.CurrentUser?.FirstName @Model.CurrentUser?.LastName</td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">Gender:</th>
+                                                <td>@Model.CurrentUser?.Gender</td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">NRIC:</th>
+                                                <td><span class="badge bg-success">@Model.DecryptedNRIC</span></td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">Email:</th>
+                                                <td>@Model.CurrentUser?.Email</td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">Date of Birth:</th>
+                                                <td>@Model.CurrentUser?.DateOfBirth.ToString("dd MMM yyyy")</td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">Age:</th>
+                                                <td>@Model.CalculateAge() years old</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                                <div class="col-md-6">
+                                    @if (!string.IsNullOrEmpty(Model.CurrentUser?.ResumePath))
+                                    {
+                                        <div class="mb-3">
+                                            <h6>Resume:</h6>
+                                            <a href="@Model.CurrentUser.ResumePath" target="_blank" class="btn btn-sm btn-outline-primary">
+                                                📄 View Resume
+                                            </a>
+                                        </div>
+                                    }
+
+                                    @if (!string.IsNullOrEmpty(Model.CurrentUser?.WhoAmI))
+                                    {
+                                        <div class="mb-3">
+                                            <h6>About Me:</h6>
+                                            <div class="card">
+                                                <div class="card-body">
+                                                    @Html.Raw(Model.CurrentUser.WhoAmI)
+                                                </div>
+                                            </div>
+                                        </div>
+                                    }
+                                </div>
+                            </div>
+
+                            <hr />
+
+                            <div class="row mt-4">
+                                <div class="col-md-12">
+                                    <h6>Account Security:</h6>
+                                    <ul class="list-group">
+                                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                                            Email Verified
+                                            @if (Model.CurrentUser!.IsEmailVerified)
+                                            {
+                                                <span class="badge bg-success">✓ Verified</span>
+                                            }
+                                            else
+                                            {
+                                                <span class="badge bg-warning">⚠ Not Verified</span>
+                                            }
+                                        </li>
+                                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                                            Session ID
+                                            <span class="badge bg-secondary">@Model.SessionId</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="mt-4">
+                                <a asp-page="/ChangePassword" class="btn btn-primary">Change Password</a>
+                                <a asp-page="/Logout" class="btn btn-danger">Logout</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+
+    <script>
+        // Animate elements on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.animate-on-scroll').forEach(el => {
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>

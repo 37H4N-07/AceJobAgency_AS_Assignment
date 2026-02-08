@@ -14,6 +14,28 @@ namespace AceJobAgency_AS_Assignment.Services
             _logger = logger;
         }
 
+        private string RedactEmailForLogging(string email)
+        {
+            if (string.IsNullOrEmpty(email) || !email.Contains("@"))
+            {
+                return email;
+            }
+
+            var parts = email.Split('@');
+            var localPart = parts[0];
+            var domainPart = parts[1];
+
+            if (localPart.Length <= 1)
+            {
+                return $"*@{domainPart}";
+            }
+
+            var visibleFirstChar = localPart[0];
+            var redactedLocal = visibleFirstChar + new string('*', localPart.Length - 1);
+
+            return $"{redactedLocal}@{domainPart}";
+        }
+
         public async Task SendEmailAsync(string toEmail, string subject, string body)
         {
             try
@@ -51,11 +73,13 @@ namespace AceJobAgency_AS_Assignment.Services
                     await client.DisconnectAsync(true);
                 }
 
-                _logger.LogInformation($"Email sent successfully to {toEmail}");
+                var redactedEmail = RedactEmailForLogging(toEmail);
+                _logger.LogInformation($"Email sent successfully to {redactedEmail}");
             }
             catch (Exception ex)
             {
-                _logger.LogError($"Failed to send email to {toEmail}: {ex.Message}");
+                var redactedEmail = RedactEmailForLogging(toEmail);
+                _logger.LogError($"Failed to send email to {redactedEmail}: {ex.Message}");
                 throw;
             }
         }

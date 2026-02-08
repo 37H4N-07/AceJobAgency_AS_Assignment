@@ -73,13 +73,11 @@ namespace AceJobAgency_AS_Assignment.Services
                     await client.DisconnectAsync(true);
                 }
 
-                var redactedEmail = RedactEmailForLogging(toEmail);
-                _logger.LogInformation($"Email sent successfully to {redactedEmail}");
+                _logger.LogInformation("Email sent successfully.");
             }
             catch (Exception ex)
             {
-                var redactedEmail = RedactEmailForLogging(toEmail);
-                _logger.LogError($"Failed to send email to {redactedEmail}: {ex.Message}");
+                _logger.LogError(ex, "Failed to send email.");
                 throw;
             }
         }

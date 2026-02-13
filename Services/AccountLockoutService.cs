@@ -74,7 +74,7 @@ namespace AceJobAgency_AS_Assignment.Services
                 {
                     var context = scope.ServiceProvider.GetRequiredService<AuthDbContext>();
 
-                    var staleSessionCutoff = DateTime.UtcNow.AddMinutes(-2);
+                    var staleSessionCutoff = DateTime.UtcNow.AddMinutes(-20);
 
                     var staleSessions = await context.LoginHistories
                         .Where(l => l.IsActive && l.LoginTime < staleSessionCutoff)

@@ -1,8 +1,8 @@
 ﻿// Session Timeout Handler
 (function() {
     // Session timeout in milliseconds (20 minutes = 1200000ms)
-    const SESSION_TIMEOUT = 2 * 60 * 1000;
-    const WARNING_TIME = 1 * 60 * 1000;
+    const SESSION_TIMEOUT = 20 * 60 * 1000;
+    const WARNING_TIME = 18 * 60 * 1000;
     
     let timeoutTimer;
     let warningTimer;
